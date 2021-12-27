@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>사물인터넷이란?</title>
+    <meta charset="utf-8">
+</head>
+
+<style>
+    body {
+        margin: 0;
+        background-color: rgb(25, 25, 25);
+        color: white;
+    }
+
+    * {
+        font-family: 'Do Hyeon', sans-serif;
+    }
+
+    /*제목*/
+    #title h1 {
+        background-color: rgb(26, 26, 26);
+        font-size: 35px;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+        padding-bottom: 10px;
+    }
+
+    #title h1 a {
+        padding-right: 51px;
+    }
+
+    #title div {
+        background-color: rgb(26, 26, 26);
+        text-align: center;
+        font-size: 15px;
+        border-bottom: 1px solid rgb(45, 45, 45);
+        padding-bottom: 10px;
+        padding-right: 71px;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+
+
+    /*리스트*/
+    ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .menu ul {
+        display: flex;
+        background-color: rgb(26, 26, 26);
+    }
+
+    .menu ul li {
+        flex: 1;
+        border: 1px solid rgb(45, 45, 45);
+        border-top: none;
+        border-right: none;
+    }
+
+    .menu ul li a {
+        display: block;
+        height: 50px;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        text-decoration: none;
+    }
+
+    .menu li a:hover {
+        background-color: rgb(40, 40, 40);
+    }
+
+    .bar * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.35s ease;
+        transition: all 0.35s ease;
+    }
+
+    .bar li {
+        display: inline-block;
+        list-style: outside none none;
+        padding: 0;
+    }
+
+    .bar a {
+        color: rgba(255, 255, 255, 0.5);
+        position: relative;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .bar a:before,
+    .bar a:after {
+        height: 3px;
+        position: absolute;
+        content: '';
+        -webkit-transition: all 0.35s ease;
+        transition: all 0.35s ease;
+        background-color: rgba(222, 105, 28);
+        width: 0;
+    }
+
+    .bar a:before {
+        top: 0;
+        left: 0;
+    }
+
+    .bar a:after {
+        bottom: 0;
+        right: 0;
+    }
+
+    .bar a:hover,
+    .bar .current a {
+        color: #ffffff;
+    }
+
+    .bar a:hover:before,
+    .bar .current a:before,
+    .bar a:hover:after,
+    .bar .current a:after {
+        width: 100%;
+    }
+
+    /*본문*/
+    #text {
+        padding: 30px;
+    }
+
+    #text #article {
+        padding-right: none;
+        float: left;
+        text-align: left;
+        width: 700px;
+        font-size: 18px;
+    }
+
+    #text #article p {
+        line-height: 1.5;
+    }
+
+    .iot_img {
+        float: right;
+        padding-right: 30px;
+    }
+
+    /*미디어 쿼리*/
+    @media (max-width: 1000px) {
+        #text #article {
+            width: auto;
+        }
+    }
+
+    @media (max-width:590px) {
+        .menu ul li a {
+            font-size: 12px;
+        }
+
+        #text #article {
+            font-size: 9px;
+            width: auto;
+        }
+    }
+
+    /* 사이드 메뉴 */
+    input[id="menuicon"] {
+        display: none;
+    }
+
+    input[id="menuicon"]+label {
+        display: block;
+        margin: 30px;
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 60px;
+        height: 50px;
+        position: relative;
+        cursor: pointer;
+        float: left;
+    }
+
+    input[id="menuicon"]+label span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        border-radius: 30px;
+        background: white;
+        transition: all .35s;
+    }
+
+    input[id="menuicon"]+label span:nth-child(1) {
+        top: 0;
+    }
+
+    input[id="menuicon"]+label span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    style {
+        top: calc(50% - 2.5px);
+        margin-top: -2.5px;
+    }
+
+    input[id="menuicon"]+label span:nth-child(3) {
+        bottom: 0;
+    }
+
+    input[id="menuicon"]:checked+label {
+        z-index: 2;
+    }
+
+    input[id="menuicon"]:checked+label span {
+        background: #fff;
+    }
+
+    input[id="menuicon"]:checked+label span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    input[id="menuicon"]:checked+label span:nth-child(2) {
+        opacity: 0;
+    }
+
+    input[id="menuicon"]:checked+label span:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
+
+    div[class="sidebar"] {
+        width: 300px;
+        height: 100%;
+        background: #222;
+        position: fixed;
+        top: 0;
+        left: -300px;
+        z-index: 1;
+        transition: all .35s;
+    }
+
+    input[id="menuicon"]:checked+label+div {
+        left: 0;
+    }
+
+    #iconsize {
+        width: 40px;
+        height: 30px;
+        margin-top: 35px;
+    }
+    .img_padding {
+        padding-top: 100px;
+        padding-left: 75px;
+    }
+
+    .imgbox {
+        background: rgb(26, 26, 26);
+        width: 150px;
+        height: 150px;
+        border-radius: 70%;
+        overflow: hidden;
+    }
+
+    .face {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .infomation {
+        padding-top: 30px;
+        padding-bottom: 20px;
+        text-align: center;
+        border-bottom: 1px solid white;
+    }
+
+    .img_padding2 {
+        padding-top: 15px;
+        padding-left: 20px;
+        width: 260px;
+    }
+    
+    .instalogo {
+        width: 200px;
+        height: auto;
+        display: block;
+    }
+    
+    .img_padding3 {
+        padding-left: 50px;
+        width: 200px;
+    }
+    
+    .emaillogo {
+        width: 200px;
+        height: auto;
+        display: block;
+    }
+    
+    .img_padding4 {
+        padding-left: 30px;
+        width: 240px;
+    }
+
+    .calllogo {
+        width: 200px;
+        height: auto;
+        display: block;
+    }
+</style>
+
+<body>
+    <input type="checkbox" id="menuicon">
+    <label for="menuicon" id="iconsize">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="sidebar">
+        <div class="img_padding">
+            <div class="imgbox">
+                <img class="face" src="face.jpeg">
+            </div>
+        </div>
+        <div class="infomation">
+            가평고등학교 2-3
+            <p>
+                신재균
+            </p>
+        </div>
+        <div class="img_padding2">
+            <a href="https://www.instagram.com/shin_jaegyun_/">
+                <img class="instalogo" src="insprofile.png">
+            </a>
+        </div>
+        <div class="img_padding3">
+            <img class="emaillogo" src="email_profile.png">
+        </div>
+        <div class="img_padding4">
+            <img class="calllogo" src="call.png">
+        </div>
+    </div>
+    <div id="title">
+        <h1><a href="home.html">Internet of Things</h1></a>
+        <div>
+            2318 신재균
+        </div>
+    </div>
+    <nav class="menu">
+        <ul class="bar" style="margin-top: 0px;">
+            <li><a href="info.html"><strong>IoT(사물인터넷)란?</strong></a></li>
+            <li><a href="principle.html">IoT의 기술</a></li>
+            <li><a href="sort.html">IoT의 종류</a></li>
+            <li><a href="problem.html">IoT의 문제점</a></li>
+        </ul>
+    </nav>
+
+    <div id="text">
+        <div id="article">
+            <h2>사물인터넷(Internet of Things)이란?</h2>
+            <p>
+                사물인터넷은 세상에 존재하는 유형 혹은 무형의 객체들이 다양한 방식으로 서로 연결되어 개별 객체들이 제공하지 못했던 새로운 서비스를 제공하는 것을 말한다.
+            </p>
+            <p>
+                사물인터넷은 단어의 뜻 그대로 <strong>'사물들(things)'</strong>이 <strong>'서로 연결된(Internet)'</strong>것 혹은 <strong>'사물들로
+                    구성된 인터넷'</strong>을 말한다. 기존의
+                인터넷이 컴퓨터나 무선 인터넷이 가능했던 휴대전화들이 서로 연결되어 구성되었던 것과는 달리, 사물인터넷은 책상, 자동차, 가방, 나무, 반려동물 등 세상에 존재하는 모든 사물이 연결되어
+                구성된 인터넷이라 할 수 있다.
+            </p>
+        </div>
+    </div>
+    <img class="iot_img" src="IoT_img.jpeg">
+</body>
+
+</html>
